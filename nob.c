@@ -28,6 +28,7 @@ int main(int argc, char** argv) {
     cmd_append(&buildCmd, "src/main.c");
     cmd_append(&buildCmd, "src/terminal.c");
     cmd_append(&buildCmd, "src/tictactoe.c");
+    cmd_append(&buildCmd, "src/minimax.c");
     cmd_append(&buildCmd, "src/nob.c");
 
     if (!cmd_run(&buildCmd)) return 1;

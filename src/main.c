@@ -3,6 +3,7 @@
 
 #include "terminal.h"
 #include "tictactoe.h"
+#include "minimax.h"
 #include "../nob.h"
 
 void user_turn(TicTacToeBoard* board, CellState userType) {
@@ -32,8 +33,6 @@ void user_turn(TicTacToeBoard* board, CellState userType) {
     } while(!placed);
 }
 
-
-
 int main() {
     terminal_enter_alt_buffer();
     TicTacToeBoard game = {0};
@@ -48,7 +47,11 @@ int main() {
 
         terminal_clear();
         print_board(&game);
-        user_turn(&game, CELL_NAUGHT);
+        size_t botPos = minimax_pick_position(&game, CELL_NAUGHT);
+        size_t row, col;
+        pos_to_row_col(botPos, &row, &col);
+        game.board[row][col] = CELL_NAUGHT;
+        game.moveCount++;
         winstate = check_for_win(&game);
         isOver = winstate != WIN_NO;
     }
