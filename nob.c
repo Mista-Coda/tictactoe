@@ -24,9 +24,11 @@ int main(int argc, char** argv) {
     if (enableDebug) {
         cmd_append(&buildCmd, "-ggdb");
     }
-
+    
     cmd_append(&buildCmd, "src/main.c");
     cmd_append(&buildCmd, "src/terminal.c");
+    cmd_append(&buildCmd, "src/tictactoe.c");
+    cmd_append(&buildCmd, "src/nob.c");
 
     if (!cmd_run(&buildCmd)) return 1;
 
